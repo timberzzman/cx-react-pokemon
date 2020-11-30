@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "A pokedex with postgresSQL",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timberzzman/cx-react-pokemon.git"
+  },
+  "author": "Elouan MAILLY",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timberzzman/cx-react-pokemon/issues"
+  },
+  "homepage": "https://github.com/timberzzman/cx-react-pokemon#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.21.12",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.14.0"
+  }
+}
