@@ -8,14 +8,17 @@
   });
   knex.raw('create database Pokedex')
 */
+
+const connection = {
+  host: '127.0.0.1',
+  port: '5433',
+  user: 'postgres',
+  password: 'Zv1WbQSe',
+};
+
 const knex = require('knex')({
   client: 'pg',
-  connection: {
-    host: '127.0.0.1',
-    user: 'postgres',
-    password: 'root',
-    database: 'Pokedex',
-  },
+  connection,
 });
 
 const jsonFile = require('../data/pokedex.json');
@@ -39,45 +42,60 @@ for (let i = 0; i < jsonFile.length; i += 1) {
   }
 }
 
-console.log(attacks);
+function addingTables() {
+  knex.schema.hasTable('pokemons').then((exists) => {
+    if (!exists) {
+      knex.schema.createTable('pokemons', (table) => {
+        table.increments();
+        for (let k = 0; k < keys.length; k += 1) {
+          table.string(keys[k]);
+        }
+      }).then((message) => {
+        console.log('Import successfully', message);
+      });
+    } else {
+      knex.schema.table('pokemons', (table) => {
+        for (let k = 0; k < keys.length; k += 1) {
+          table.string(keys[k]);
+        }
+      });
+      console.error('table is already exists');
+      console.error(exists);
+    }
+  });
 
-knex.schema.hasTable('pokemons').then((exists) => {
-  if (!exists) {
-    knex.schema.createTable('pokemons', (table) => {
-      table.increments();
-      for (let k = 0; k < keys.length; k += 1) {
-        table.string(keys[k]);
-      }
-    }).then((message) => {
-      console.log('Import successfully', message);
-    });
-  } else {
-    knex.schema.table('pokemons', (table) => {
-      for (let k = 0; k < keys.length; k += 1) {
-        table.string(keys[k]);
-      }
-    });
-    console.error('table is already exists');
-  }
-});
-
-knex.schema.hasTable('attack').then((exists) => {
-  if (!exists) {
-    knex.schema.createTable('attack', (table) => {
-      table.increments();
-      table.string('niveau');
-      table.string('nom');
-      table.string('puissance');
-      table.string('precision');
-      table.string('pp');
-    }).then((message) => {
-      console.log('Import successfully', message);
+  knex.schema.hasTable('attack').then((exists) => {
+    if (!exists) {
+      knex.schema.createTable('attack', (table) => {
+        table.increments();
+        table.string('niveau');
+        table.string('nom');
+        table.string('puissance');
+        table.string('precision');
+        table.string('pp');
+      }).then((message) => {
+        console.log('Import successfully', message);
+        process.exit(0);
+      });
+    } else {
+      knex.schema.table('attack', (table) => {});
+      console.error('table is already exists');
+      console.error(exists);
       process.exit(0);
+    }
+  });
+}
+
+knex.raw('CREATE DATABASE pokedex').catch((err) => {
+  console.error(err);
+  knex.destroy();
+}).then((message) => {
+  knex.destroy().then(() => {
+    connection.database = 'pokedex';
+    knex.initialize({
+      client: 'pg',
+      connection,
     });
-  } else {
-    knex.schema.table('attack', (table) => {
-    });
-    console.error('table is already exists');
-    process.exit(0);
-  }
+    addingTables();
+  });
 });
