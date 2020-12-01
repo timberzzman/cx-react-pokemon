@@ -74,10 +74,7 @@ function insertPokemons() {
       }
     }
     knex.insert(temp).into('pokemons').returning('id').then((id) => {
-      // console.log('id pokemon', id);
-      // console.log('index pokemon', i);
       [jsonFile[i].id] = id;
-      // console.log(jsonFile[i]['id']);
       if (i + 1 === jsonFile.length) {
         createJunction();
       }
@@ -87,7 +84,6 @@ function insertPokemons() {
 
 function insertAttacks() {
   for (let i = 0; i < attacks.length; i += 1) {
-    // console.log(attacks[i]);
     knex.insert({
       niveau: attacks[i].niveau,
       nom: attacks[i].nom,
@@ -95,9 +91,7 @@ function insertAttacks() {
       precision: attacks[i].precision,
       pp: attacks[i].pp,
     }).into('attacks').returning('id').then((id) => {
-      // console.log('id attaque', id);
       [attacks[i].id] = id;
-      // console.log(attacks[i].id);
       if (i + 1 === attacks.length) {
         insertPokemons();
       }
