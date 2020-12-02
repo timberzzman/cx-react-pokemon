@@ -1,4 +1,5 @@
 const express = require('express');
+const dbWorker = require('./dbWorker');
 
 const router = express.Router();
 
@@ -9,11 +10,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/pokemons', (req, res) => {
-  res.sendStatus(200);
+  dbWorker.getAll(res);
 });
 
 router.get('/pokemons/:id', (req, res) => {
-  res.sendStatus(200);
+  dbWorker.getPokemon(res, req.params.id);
 });
 
 router.get('/*', (req, res) => {
