@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const router = require('./src/router');
 
 const app = express();
@@ -10,8 +11,9 @@ if (!port) {
   process.exit(40);
 }
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
+
 app.use('/', router);
 
 app.listen(port, () => {
