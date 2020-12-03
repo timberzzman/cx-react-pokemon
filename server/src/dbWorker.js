@@ -15,7 +15,7 @@ const dbWorker = {};
  * @param  {import('express').Response} res
  */
 dbWorker.getAll = (res) => {
-  knex.select('numéro', 'nom').from('pokemons').orderBy('numéro').then((data) => {
+  knex.select('numero', 'nom').from('pokemons').orderBy('numero').then((data) => {
     const response = {};
     response.code = 200;
     response.data = data;
@@ -43,6 +43,7 @@ dbWorker.getPokemon = (res, id) => {
       french: data[0].nom,
     };
     pokemon.type = data[0].type1;
+    pokemon.img = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.id}.png`;
     pokemon.base = {
       poids: data[0].poids,
       taille: data[0].taille,
