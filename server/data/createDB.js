@@ -1,6 +1,6 @@
 const connection = {
   host: '127.0.0.1',
-  // port: '5433',
+  port: '5433',
   user: 'postgres',
   password: 'root',
 };
@@ -24,7 +24,9 @@ const attacks = [];
  * @returns boolean
  */
 function isInside(a, b) {
-  const c = { ...b };
+  const c = {
+    ...b
+  };
   if (Object.prototype.hasOwnProperty.call(c, 'id')) {
     delete c.id;
   }
@@ -52,7 +54,7 @@ function createJunction() {
           knex.insert({
             pokemons_id: jsonFile[i].id,
             attacks_id: attacks[j].id,
-          }).into('poketacks').returning('id').then(() => {
+          }).into('poketacks').then(() => {
             if (i + 1 === jsonFile.length && j + 1 === attacks.length) {
               finishProgram();
             }
@@ -103,11 +105,11 @@ function addingPoketacks() {
   knex.schema.hasTable('poketacks').then((exists) => {
     if (!exists) {
       knex.schema.createTable('poketacks', (table) => {
-        table.increments();
         table.integer('pokemons_id').unsigned();
         table.integer('attacks_id').unsigned();
         table.foreign('pokemons_id').references('pokemons.id');
         table.foreign('attacks_id').references('attacks.id');
+        table.primary(['pokemons_id', 'attacks_id']);
       }).then(() => {
         insertAttacks();
       });
@@ -161,19 +163,35 @@ for (let i = 0; i < jsonFile.length; i += 1) {
   if (jsonFile[i].attaques) {
     for (let k = 0; k < jsonFile[i].attaques.length; k += 1) {
       if (!isInside(attacks, jsonFile[i].attaques[k])) {
-        attacks.push({ ...jsonFile[i].attaques[k] });
+        attacks.push({
+          ...jsonFile[i].attaques[k]
+        });
       }
     }
   }
 }
 
-knex.raw('CREATE DATABASE pokedex').catch(() => {
-}).then(() => {
-  knex.destroy();
-  connection.database = 'pokedex';
-  knex = require('knex')({
-    client: 'pg',
-    connection,
+function reconnectDatabase() {
+  knex.destroy().then(() => {
+    connection.database = 'pokedex';
+    knex = require('knex')({
+      client: 'pg',
+      connection,
+    });
+    addingPokemons();
   });
-  addingPokemons();
-});
+}
+
+function createDatabase() {
+  knex.raw('CREATE DATABASE pokedex').catch(() => {
+    knex.raw('DROP DATABASE pokedex').then(() => {
+      knex.raw('CREATE DATABASE pokedex').then(() => {
+        reconnectDatabase();
+      });
+    });
+  }).then(() => {
+    reconnectDatabase();
+  });
+}
+
+createDatabase();
