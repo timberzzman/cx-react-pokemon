@@ -11,8 +11,8 @@ if (!port) {
   process.exit(40);
 }
 
-app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.json());
 
 app.use('/', router);
 

@@ -20,7 +20,7 @@ dbWorker.getAll = (res) => {
     response.code = 200;
     response.data = data;
     for (let i = 0; i < response.data.length; i += 1) {
-      response.data[i].url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${response.data[i]['numéro']}.png`;
+      response.data[i].url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${response.data[i].numero}.png`;
     }
     res.send(response);
   });

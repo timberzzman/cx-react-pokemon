@@ -24,9 +24,7 @@ const attacks = [];
  * @returns boolean
  */
 function isInside(a, b) {
-  const c = {
-    ...b
-  };
+  const c = { ...b };
   if (Object.prototype.hasOwnProperty.call(c, 'id')) {
     delete c.id;
   }
@@ -163,9 +161,7 @@ for (let i = 0; i < jsonFile.length; i += 1) {
   if (jsonFile[i].attaques) {
     for (let k = 0; k < jsonFile[i].attaques.length; k += 1) {
       if (!isInside(attacks, jsonFile[i].attaques[k])) {
-        attacks.push({
-          ...jsonFile[i].attaques[k]
-        });
+        attacks.push({ ...jsonFile[i].attaques[k] });
       }
     }
   }

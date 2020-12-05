@@ -6,7 +6,6 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "plugin:prettier/recommended",
         "plugin:jest/recommended",
         "standard"
     ],
@@ -26,6 +25,5 @@
     },
     "rules": {
         "space-before-function-paren": "off"
-        
     }
 }
