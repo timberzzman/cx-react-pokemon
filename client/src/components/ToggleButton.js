@@ -23,7 +23,7 @@ class ToggleButton extends Component {
       <button
         id="toggleButton"
         onClick={this.handleClick}
-        className="absolute top-0 right-0 px-2 py-1 outline-none shadow-md border-solid rounded-full"
+        className="absolute top-5 right-5 px-2 py-1 outline-none shadow-md border-solid rounded-full"
       > <p>{`${this.state.isDarkTheme ? 'Light mode' : 'Dark mode'}`} </p>
         <FontAwesomeIcon icon={this.state.isDarkTheme ? faSun : faMoon} />
       </button>
