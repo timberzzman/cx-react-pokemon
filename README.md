@@ -21,7 +21,7 @@ Project created in node.js v15.3.0 with :
   - PG
   - PostgreSQL
 
-L'objectif de ce projet est de créer un Pokedex en utilisant react pour le client (front), knex et express pour le serveur (end)
+The objective of this project is to create a Pokedex using react for the client (front-end), knex and express for the server (back-end).
 
 # 📥 Installation
 
@@ -33,14 +33,14 @@ L'objectif de ce projet est de créer un Pokedex en utilisant react pour le clie
 ### 1. Json to sql
 #### To pass the .json file into the postgreSQL database please follow the instructions below.
 1) Go to the folder named " server "
-2) Run the file "createDB.js"
+2) Run the script db
 ```nodejs
 npm run db
 ```
 ### 2. Start API server
 #### To run the API please follow the instructions below.
 1) Go to the folder named " server "
-2) Run the file "server.js" (you must enter a port ex. 4242)
+2) Make the following command (you must enter a port ex. 4242)
 ```nodejs
 npm start 4242
 ```
