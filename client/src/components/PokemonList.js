@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PokemonCard from './PokemonCard'
+import PostButton from './postButton'
 import '../App.css'
 import '../tailwind.output.css'
 
@@ -19,6 +20,7 @@ function PokemonList() {
   if (isLoaded) {
     return (
       <div className="my-12 mx-auto px-4">
+        <PostButton />
         <div className="flex flex-raw -mx-1">
           <div className="grid grid-cols-5 my-1 px-1 w-full">
                 {pokemonList.map((element) => <PokemonCard key={parseInt(element.numero)} id={element.numero} name={element.nom} url={element.url} />)}
