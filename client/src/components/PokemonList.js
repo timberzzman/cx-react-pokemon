@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-// import Test from './test'
 import PokemonCard from './PokemonCard'
+import '../App.css'
+import '../tailwind.output.css'
 
 function PokemonList() {
+  const [isLoaded, setLoaded] = useState(false)
   const [pokemonList, setPokemonList] = useState([])
   useEffect(() => {
     fetch('http://localhost:4242/pokemons')
@@ -11,19 +13,26 @@ function PokemonList() {
         for (const element of data.data) {
           setPokemonList(pokemonList => pokemonList.concat(element))
         }
+        setLoaded(true)
       })
   }, [])
-  return (
-    <div className="container my-12 mx-auto px-4 md:px-12">
-      <div className="flex flex-wrap -mx-1 lg:-mx-4">
-        <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-          <article className="overflow-hidden rounded-lg shadow-lg">
-              {pokemonList.map((element) => <PokemonCard key={parseInt(element.numero)} id={element.numero} name={element.nom} url={element.url} />)}
-          </article>
+  if (isLoaded) {
+    return (
+      <div className="my-12 mx-auto px-4">
+        <div className="flex flex-raw -mx-1">
+          <div className="grid grid-cols-5 my-1 px-1 w-full">
+                {pokemonList.map((element) => <PokemonCard key={parseInt(element.numero)} id={element.numero} name={element.nom} url={element.url} />)}
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div>
+        <img src="pokeball.svg"/>
+      </div>
+    )
+  }
 }
 
 export default PokemonList

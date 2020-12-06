@@ -24,7 +24,7 @@ router.get('/*', (req, res) => {
 // POST ROUTES
 
 router.post('/pokemons', (req, res) => {
-  res.sendStatus(200);
+  dbWorker.addPokemon(req, res);
 });
 
 router.post('/*', (req, res) => {
@@ -34,7 +34,7 @@ router.post('/*', (req, res) => {
 // DELETE ROUTES
 
 router.delete('/pokemons/:id', (req, res) => {
-  res.sendStatus(200);
+  dbWorker.deletePokemon(res, req.params.id);
 });
 
 router.delete('/*', (req, res) => {

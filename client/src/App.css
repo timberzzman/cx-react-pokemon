@@ -1,11 +1,11 @@
 .Logo-Animation {
-  height: 30vmin;
+  height: 50vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .Logo-Animation {
-    animation: Logo-Animation-spin infinite 30s linear;
+    animation: Logo-Animation-spin infinite 20s linear;
   }
 }
 
