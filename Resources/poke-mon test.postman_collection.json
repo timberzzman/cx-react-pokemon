@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "4cdd0db7-87ac-4fc3-a3cb-32e8fc166408",
+		"name": "poke-mon test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET all pokemons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4242/pokemons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4242",
+					"path": [
+						"pokemons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET one pokemon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4242/pokemons/001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4242",
+					"path": [
+						"pokemons",
+						"001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST pokemon",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nom\": \"Pikaramia\",\r\n    \"type\": \"Saumon\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4242/pokemons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4242",
+					"path": [
+						"pokemons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE pokemon",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4242/pokemons/142",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4242",
+					"path": [
+						"pokemons",
+						"142"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
