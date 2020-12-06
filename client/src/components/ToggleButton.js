@@ -20,13 +20,15 @@ class ToggleButton extends Component {
 
   render() {
     return (
-      <button
+      <div>
+        <button
         id="toggleButton"
         onClick={this.handleClick}
-        className="absolute top-5 right-5 px-2 py-1 outline-none shadow-md border-solid rounded-full hover:shadow-inner"
-      >
+        className="bg-gray-100 hover:bg-gray-200 px-4 py-3 shadow-md border-solid focus:outline-none focus:ring-0 rounded-full hover:shadow-inner dark:bg-gray-800 dark:hover:bg-gray-500">
+          {this.state.isDarkTheme ? document.querySelector('html').classList.add('dark') : document.querySelector('html').classList.remove('dark')}
         <FontAwesomeIcon icon={this.state.isDarkTheme ? faSun : faMoon} />
-      </button>
+        </button>
+      </div>
     )
   }
 }

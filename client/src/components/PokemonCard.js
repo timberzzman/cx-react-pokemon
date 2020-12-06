@@ -5,18 +5,17 @@ import '../tailwind.output.css'
 
 function PokemonCard(props) {
   return (
-    <div>
-      <article className="overflow-hidden rounded-lg shadow-lg hover:shadow-inner hover:bg-gray-100 px-16 py-16 mx-8 my-8">
+    <div className="cursor-pointer bg-gray-100 overflow-hidden rounded-lg shadow-lg hover:shadow-inner hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-500 dark:hover:shadow-inner px-16 py-16 mx-8 my-8"
+    onClick={() => { window.location.href = `http://localhost:3000/pokemon/${props.id}` }}>
+      <div>
         <a href={`http://localhost:3000/pokemon/${props.id}`}>
-        <img alt="Image pokemon" className="block h-auto w-full" src={props.url} />
+          <img alt="Image pokemon" className="block h-auto w-full" src={props.url} />
         </a>
-        <header className="flex justify-start leading-tight p-2">
-          <h1 className="text-lg">
-            <a className="no-underline hover:underline text-black" href={`http://localhost:3000/pokemon/${props.id}`}>{props.name}</a>
-            <p className="absolute right text-grey-darker text-sm">N°{props.id}</p>
-          </h1>
-        </header>
-      </article>
+      </div>
+      <div className="text-center">
+        <h1><a className="no-underline hover:underline" href={`http://localhost:3000/pokemon/${props.id}`}>{props.name}</a></h1>
+        <p className="text-grey-darker text-sm">N°{props.id}</p>
+      </div>
     </div>
   )
 }
