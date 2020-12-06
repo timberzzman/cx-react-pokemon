@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
 
 function CreatePokemon() {
   const [pokemon, setPokemon] = useState({})
@@ -8,8 +6,8 @@ function CreatePokemon() {
   const [msgType, setMsgType] = useState('')
   const [message, setMessage] = useState('')
   const htmlMessage = (
-    <div className={ msgType }>
-      <p className="text-red text-xs italic">{message}</p>
+    <div className={ msgType } role="alert">
+      <p>{message}</p>
     </div>
   )
 
@@ -44,10 +42,7 @@ function CreatePokemon() {
 
   return (
     <form onSubmit={mySubmitHandler}>
-      <a className="absolute left-16 focus:outline-none focus:ring-0 focus:ring-black focus:border-transparent" href="http://localhost:3000/">
-        <FontAwesomeIcon icon={faLongArrowAltLeft} size="5x" />
-      </a>
-    <div className="flex justify-around items-center px-16 py-16 mx-8 my-8">
+    <div className="flex justify-around items-center px-16 py-16 mx-8 my-8 mb-0 pb-3">
       <div className=" w-1/2 -mx-3 mb-6">
         <div className="w-full px-3 mb-6 ">
           <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="nom">
@@ -60,18 +55,20 @@ function CreatePokemon() {
             Type
           </label>
           <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="type" name='type' type="text" placeholder="Dragon" onChange={myChangeHandler}></input>
+          <div className="flex justify-center mt-10">
+            {
+              msg ? htmlMessage : ''
+            }
+          </div>
         </div>
       </div>
     </div>
     <div className="flex justify-center">
-      <a href="http://localhost:3000/pokemon/create">
-        <button className="px-8 py-5 outline-none shadow-md border-solid rounded-lg hover:shadow-inner dark:bg-gray-800 dark:hover:bg-gray-500" type="submit">
+      <a href="/pokemon/create">
+        <button className="bg-gray-300 hover:bg-gray-400 hover:text-white px-8 py-5 outline-none shadow-md border-solid rounded-lg hover:shadow-inner dark:bg-gray-800 dark:hover:bg-gray-500" type="submit">
           Ajouter le Pokémon
         </button>
       </a>
-        {
-          msg ? htmlMessage : ''
-        }
       </div>
     </form>
   )

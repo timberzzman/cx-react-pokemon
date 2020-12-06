@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PokemonCard from './PokemonCard'
+import LoadingScreen from './loadingScreen'
 import '../App.css'
 import '../tailwind.output.css'
 
@@ -28,9 +29,7 @@ function PokemonList() {
     )
   } else {
     return (
-      <div>
-        <img src="pokeball.svg" className="w-1/2"/>
-      </div>
+      <LoadingScreen />
     )
   }
 }

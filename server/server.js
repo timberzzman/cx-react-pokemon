@@ -8,7 +8,7 @@ const port = process.argv[2];
 
 if (!port) {
   console.error('You need to give a port');
-  process.exit(40);
+  process.exit(0);
 }
 
 app.use(cors());

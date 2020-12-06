@@ -12,17 +12,17 @@ export default class App extends Component {
       <div>
         <Header />
         <BrowserRouter>
-        <Switch>
-          <Route path='/pokemon/create'>
+          <Switch>
+            <Route path='/pokemon/create'>
               <CreatePokemon />
-          </Route>
-          <Route path='/pokemon/:pokemonID'>
-            <PokemonPage />
-          </Route>
-          <Route path="/">
-            <PokemonList />
-          </Route>
-        </Switch>
+            </Route>
+            <Route path='/pokemon/:pokemonID'>
+              <PokemonPage />
+            </Route>
+            <Route path="/">
+              <PokemonList />
+            </Route>
+          </Switch>
         </BrowserRouter>
       </div>
     )
