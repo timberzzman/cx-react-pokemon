@@ -1,6 +1,6 @@
 const connection = {
   host: '127.0.0.1',
-  // port: '5433',
+  port: '5433',
   user: 'postgres',
   password: 'root',
 };
@@ -180,10 +180,9 @@ function reconnectDatabase() {
 
 function createDatabase() {
   knex.raw('CREATE DATABASE pokedex').catch(() => {
-    knex.raw('DROP DATABASE pokedex').then(() => {
-      knex.raw('CREATE DATABASE pokedex').then(() => {
-        reconnectDatabase();
-      });
+    knex.destroy().then(() => {
+      console.error('You need to drop the database \'pokedex\' before running this script.');
+      process.exit(0);
     });
   }).then(() => {
     reconnectDatabase();
