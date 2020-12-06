@@ -2,7 +2,7 @@ const knex = require('knex')({
   client: 'pg',
   connection: {
     host: '127.0.0.1',
-    // port: 5433,
+    port: 5433,
     user: 'postgres',
     password: 'root',
     database: 'pokedex',
@@ -36,21 +36,27 @@ dbWorker.getPokemon = (res, id) => {
     const response = {};
     const pokemon = {};
     if (data.length >= 1) {
-      response.code = 200;
-      pokemon.id = data[0].numero;
-      pokemon.names = {
-        english: data[0].nomen,
-        japanese: data[0].nomja,
-        french: data[0].nom,
-      };
-      pokemon.type = data[0].type1;
-      pokemon.img = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.id}.png`;
-      pokemon.base = {
-        poids: data[0].poids,
-        taille: data[0].taille,
-      };
-      response.data = pokemon;
-      res.send(response);
+      knex('poketacks').whereIn('pokemons_id', [data[0].id]).join('attacks', 'attacks_id', '=', 'attacks.id').select('*')
+        .then((attacks) => {
+          console.log('im stocking data');
+          response.code = 200;
+          pokemon.id = data[0].numero;
+          pokemon.names = {
+            english: data[0].nomen,
+            japanese: data[0].nomja,
+            french: data[0].nom,
+          };
+          pokemon.type = data[0].type1;
+          pokemon.img = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.id}.png`;
+          pokemon.base = {
+            poids: data[0].poids,
+            taille: data[0].taille,
+          };
+          pokemon.attaques = attacks;
+          response.data = pokemon;
+          console.log('Im sending pokemon');
+          res.send(response);
+        });
     }
   });
 };
