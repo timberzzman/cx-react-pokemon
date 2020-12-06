@@ -97,9 +97,11 @@ function PokemonPage() {
             <hr className="border-b-2 border-black my-6"></hr>
           </div>
           <div>
-            <button className="absolute right-5 bg-red-400 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">
-              {`Delete ${pokemon.names.french}`}
-            </button>
+            <a href="">
+              <button className="absolute right-5 bg-red-400 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">
+                {`Delete ${pokemon.names.french}`}
+              </button>
+            </a>
           </div>
         </div>
       </div>
