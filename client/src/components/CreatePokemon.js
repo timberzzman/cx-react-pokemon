@@ -48,13 +48,13 @@ function CreatePokemon() {
           <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="nom">
             Nom
           </label>
-          <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" id="nom" name='nom' type="text" placeholder="Rayquaza" onChange={myChangeHandler}></input>
+          <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3 dark:text-black" id="nom" name='nom' type="text" placeholder="Rayquaza" onChange={myChangeHandler}></input>
         </div>
         <div className="w-full px-3">
           <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="type">
             Type
           </label>
-          <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="type" name='type' type="text" placeholder="Dragon" onChange={myChangeHandler}></input>
+          <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 dark:text-black" id="type" name='type' type="text" placeholder="Dragon" onChange={myChangeHandler}></input>
           <div className="flex justify-center mt-10">
             {
               msg ? htmlMessage : ''
