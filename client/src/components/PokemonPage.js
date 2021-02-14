@@ -13,7 +13,7 @@ function PokemonPage() {
   const deletePokemon = (event) => {
     event.preventDefault()
     if (confirm('Are you sure you want to delete this pokemon ?')) {
-      fetch(`http://localhost:4242/pokemons/${pokemonID}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/pokemons/${pokemonID}`, {
         method: 'DELETE'
       }).then(response => response.json()).then((data) => {
         if (data.code === 200) {
@@ -24,7 +24,7 @@ function PokemonPage() {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:4242/pokemons/${pokemonID}`)
+    fetch(`${process.env.REACT_APP_API_URL}/pokemons/${pokemonID}`)
       .then((response) => response.json())
       .then((data) => {
         setPokemon((pokemon) => Object.assign(pokemon, data.data))

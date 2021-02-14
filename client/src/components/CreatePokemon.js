@@ -24,7 +24,7 @@ function CreatePokemon() {
       setMessage('Please fill out all fields.')
       setMsg(true)
     } else {
-      fetch('http://localhost:4242/pokemons/', {
+      fetch(`${process.env.REACT_APP_API_URL}/pokemons/`, {
         headers: {
           'Content-Type': 'application/json'
         },

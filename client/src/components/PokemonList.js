@@ -8,7 +8,7 @@ function PokemonList() {
   const [isLoaded, setLoaded] = useState(false)
   const [pokemonList, setPokemonList] = useState([])
   useEffect(() => {
-    fetch('http://localhost:4242/pokemons')
+    fetch(`${process.env.REACT_APP_API_URL}/pokemons/`)
       .then((response) => response.json())
       .then((data) => {
         for (const element of data.data) {
