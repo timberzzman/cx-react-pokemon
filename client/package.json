@@ -19,7 +19,7 @@
   "scripts": {
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lintfix": "eslint --fix --ext .js --ignore-path .gitignore .",
-    "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.output.css",
+    "build:tailwind": "npx tailwindcss build src/tailwind.css -o src/tailwind.output.css",
     "prestart": "npm run build:tailwind",
     "prebuild": "npm run build:tailwind",
     "start": "react-scripts start"
